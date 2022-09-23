@@ -4,23 +4,42 @@
 
 #include "extern_functions.h"
 
-const function functions[3] = {{sin_f_, "sin"},
-                               {cos_f_, "cos"},
-                               {log_f_, "log", (char **) "base", 1}};
+function functions[3] = {{sin_f_, "sin"},
+                         {cos_f_, "cos"},
+                         {log_f_, "log"}};
 
-const function integrators[3] = {{rectangle_, "rectangle"},
-                                 {trapezium_, "trapezium"},
-                                 {simpson_,   "simpson"}};
+method methods[3] = {{rectangle_, "rectangle"},
+                     {trapezium_, "trapezium"},
+                     {simpson_,   "simpson"}};
 
 double run_program(program prog)
 {
-    //TODO
-    return 0;
+    return prog.meth->pointer(prog.func->pointer, &prog.low_lim, &prog.high_lim, &prog.steps);
 }
 
-function *func_from_string(char *s)
+function *func_from_string(char s[MAX_BUFFER_LENGTH])
 {
-    //TODO
-    function *result;
-    return result;
+    //TODO error handling
+    int i = 0;
+
+    while (strcmp(functions[i].name, s) != 0){
+
+        i++;
+    }
+
+    return &functions[i];
 }
+
+method *method_from_string(char s[MAX_BUFFER_LENGTH])
+{
+    //TODO error handling
+    int i = 0;
+
+    while (strcmp(methods[i].name, s) != 0){
+
+        i++;
+    }
+
+    return &methods[i];
+}
+

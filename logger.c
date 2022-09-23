@@ -29,5 +29,12 @@ void Log(char *msg, LogLevel level)
 
 void print_manual()
 {
-    //TODO
+    printf("Usage: \n");
+    printf("    ./integrator [config file] \n");
+    printf("Config file: \n");
+    printf("    method = [rectangle, trapezium, simpson] \n");
+    printf("    function = [sin, cos, log] \n");
+    printf("    low_lim = [] \n");
+    printf("    high_lim = [] \n");
+    printf("    steps = [] \n ");
 }

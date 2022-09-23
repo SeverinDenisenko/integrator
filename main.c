@@ -1,4 +1,3 @@
-#include <string.h>
 #include <stdlib.h>
 #include "logger.h"
 #include "string_utils.h"
@@ -6,7 +5,6 @@
 
 int main(int argc, char *argv[])
 {
-
     // Parsing command line input //
 
     if (argc != 2)
@@ -30,14 +28,14 @@ int main(int argc, char *argv[])
     char parameters_str[MAX_PARAMETERS][MAX_BUFFER_LENGTH];
     char parameters_values_str[MAX_PARAMETERS][MAX_BUFFER_LENGTH];
 
-    int parameter_index = 0;
+    int parameters_count = 0;
     while (fgets(config_line, MAX_BUFFER_LENGTH, config_file))
     {
         remove_spaces(config_line);
         remove_comments(config_line);
-        split_parameters(config_line, parameters_str[parameter_index], parameters_values_str[parameter_index]);
+        split_parameters(config_line, parameters_str[parameters_count], parameters_values_str[parameters_count]);
 
-        parameter_index++;
+        parameters_count++;
     }
 
     fclose(config_file);
@@ -52,7 +50,9 @@ int main(int argc, char *argv[])
         FATAL("Can't find integration method in config file.");
     }
     int method_s_index = index_in_parameters(parameters_str, method_s);
-    function *method = func_from_string(parameters_values_str[method_s_index]);
+    method *meth = method_from_string(parameters_values_str[method_s_index]);
+
+    INFO("Get integration method.");
 
     char *function_s = "function";
     if (!is_in_parameters(parameters_str, function_s))
@@ -61,6 +61,8 @@ int main(int argc, char *argv[])
     }
     int function_s_index = index_in_parameters(parameters_str, function_s);
     function *func = func_from_string(parameters_values_str[function_s_index]);
+
+    INFO("Get function.");
 
     char *low_lim_s = "low_lim";
     if (!is_in_parameters(parameters_str, low_lim_s))
@@ -78,6 +80,8 @@ int main(int argc, char *argv[])
     int high_lim_s_index = index_in_parameters(parameters_str, high_lim_s);
     double high_lim = strtod(parameters_values_str[high_lim_s_index], NULL);
 
+    INFO("Get limits.");
+
     char *steps_s = "steps";
     if (!is_in_parameters(parameters_str, steps_s))
     {
@@ -86,18 +90,7 @@ int main(int argc, char *argv[])
     int steps_s_index = index_in_parameters(parameters_str, steps_s);
     int steps = strtol(parameters_values_str[steps_s_index], NULL, 10);
 
-    double custom_args[MAX_PARAMETERS];
-    if (func->args_amount != 0)
-    {
-        for (int i = 0; i < func->args_amount; ++i)
-        {
-            if (!is_in_parameters(parameters_str, func->args[i])){
-                FATAL("Can't find all the function arguments.");
-            }
-            int arg_index = index_in_parameters(parameters_str, func->args[i]);
-            custom_args[i] = strtod(parameters_values_str[arg_index], NULL);
-        }
-    }
+    //TODO fix steps = 0
 
     INFO("Get all needed arguments.");
 
@@ -107,11 +100,8 @@ int main(int argc, char *argv[])
     prog.func = func;
     prog.low_lim = low_lim;
     prog.high_lim = high_lim;
-    for (int i = 0; i < func->args_amount; ++i)
-    {
-        prog.args[i] = custom_args[i];
-    }
     prog.steps = steps;
+    prog.meth = meth;
 
     double res = run_program(prog);
 

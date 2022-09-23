@@ -7,6 +7,8 @@
 // Notice: remove_comments and remove_spaces may be better merge to one function
 void remove_spaces(char *s)
 {
+    //TODO error handling
+
     char c = ' ';
     int writer = 0, reader = 0;
 
@@ -43,6 +45,8 @@ void remove_comments(char *s)
 
 void split_parameters(const char *s, char *p, char *v)
 {
+    //TODO error handling
+
     char c = '=';
     int reader = 0;
 
@@ -61,15 +65,31 @@ void split_parameters(const char *s, char *p, char *v)
     }
 }
 
-int is_in_parameters(char (*arr)[256], char *s)
+int is_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
 {
-    //TODO
+    //TODO error handling
+
+    for (int i = 0; i < MAX_BUFFER_LENGTH; ++i)
+    {
+        if(strcmp(arr[i], s) == 0){
+            return 1;
+        }
+    }
+
     return 0;
 }
 
-int index_in_parameters(char (*arr)[256], char *s)
+int index_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
 {
-    //TODO
-    return 0;
+    //TODO error handling
+
+    int i = 0;
+
+    while (strcmp(s, arr[i]) != 0){
+
+        i++;
+    }
+
+    return i;
 }
 

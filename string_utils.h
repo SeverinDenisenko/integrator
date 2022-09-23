@@ -5,6 +5,9 @@
 #ifndef INTEGRATOR_STRING_UTILS_H
 #define INTEGRATOR_STRING_UTILS_H
 
+#include <string.h>
+#include "logger.h"
+
 #define MAX_BUFFER_LENGTH 256
 #define MAX_PARAMETERS 256
 
