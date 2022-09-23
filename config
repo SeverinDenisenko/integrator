@@ -1,0 +1,5 @@
+method = rectangle # rectangle, trapezium, simpson
+low_lim = 0
+high_lim = 1
+steps = 10
+function = sin # sin, cos, log
