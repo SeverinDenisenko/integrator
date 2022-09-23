@@ -8,7 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum LogLevel{
+enum LogLevel
+{
     LOG_LEVEL_FATAL = 0,
     LOG_LEVEL_ERROR = 1,
     LOG_LEVEL_WARNING = 2,
@@ -17,11 +18,13 @@ enum LogLevel{
 
 typedef enum LogLevel LogLevel;
 
+void print_manual();
+
 void Log(char *msg, LogLevel level);
 
 #if DEBUG_BUILD == 1
-    #define LOG_LEVEL_WARNING_ENABLED 1
-    #define LOG_LEVEL_INFO_ENABLED 1
+#define LOG_LEVEL_WARNING_ENABLED 1
+#define LOG_LEVEL_INFO_ENABLED 1
 #endif
 
 #define FATAL(message) Log(message, LOG_LEVEL_FATAL)

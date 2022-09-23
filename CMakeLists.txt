@@ -8,6 +8,6 @@ add_definitions(-DDEBUG_BUILD=1)
 add_executable(integrator
         main.c
         logger.c logger.h
-        extern_functions.h
+        extern_functions.c extern_functions.h
         Fortran/cos_f.f90 Fortran/sin_f.f90 Fortran/log_f.f90
-        Fortran/rectangle.f90 Fortran/trapezium.f90 Fortran/simpson.f90)
+        Fortran/rectangle.f90 Fortran/trapezium.f90 Fortran/simpson.f90 string_utils.c string_utils.h)

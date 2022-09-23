@@ -1,6 +1,6 @@
 ! Created by Severin on 23.09.2022.
 
-function rectangles(function, low_lim, high_lim, steps) result(res)
+function rectangle(function, low_lim, high_lim, steps) result(res)
     implicit none
     real(8) :: function
     real(8) :: low_lim
@@ -8,4 +8,4 @@ function rectangles(function, low_lim, high_lim, steps) result(res)
     real(8) :: res
     integer(4) :: steps
 
-end function rectangles
+end function rectangle
