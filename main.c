@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <ctype.h>
 #include "logger.h"
 #include "string_utils.h"
 #include "extern_functions.h"
@@ -54,6 +55,8 @@ int main(int argc, char *argv[])
 
     // Find required arguments in configs //
 
+    char *endptr;
+
     char *method_s = "method";
     if (!is_in_parameters(parameters_str, method_s))
     {
@@ -80,7 +83,10 @@ int main(int argc, char *argv[])
         FATAL("Can't find lower integration limit in config file.");
     }
     int low_lim_s_index = index_in_parameters(parameters_str, low_lim_s);
-    double low_lim = strtod(parameters_values_str[low_lim_s_index], NULL);
+    double low_lim = strtod(parameters_values_str[low_lim_s_index], &endptr);
+    if(!isspace((unsigned char)*endptr)){
+        FATAL("Can't convert low integration limit to number.");
+    }
 
     char *high_lim_s = "high_lim";
     if (!is_in_parameters(parameters_str, high_lim_s))
@@ -88,7 +94,10 @@ int main(int argc, char *argv[])
         FATAL("Can't find high integration limit in config file.");
     }
     int high_lim_s_index = index_in_parameters(parameters_str, high_lim_s);
-    double high_lim = strtod(parameters_values_str[high_lim_s_index], NULL);
+    double high_lim = strtod(parameters_values_str[high_lim_s_index], &endptr);
+    if(!isspace((unsigned char)*endptr)){
+        FATAL("Can't convert high integration limit to number.");
+    }
 
     INFO("Get limits.");
 
@@ -98,7 +107,16 @@ int main(int argc, char *argv[])
         FATAL("Can't find number of steps in config file.");
     }
     int steps_s_index = index_in_parameters(parameters_str, steps_s);
-    int steps = strtol(parameters_values_str[steps_s_index], NULL, 10);
+    long tmp = strtol(parameters_values_str[steps_s_index], &endptr, 10);
+
+    if(!isspace((unsigned char)*endptr)){
+        FATAL("Can't convert number of steps to number.");
+    }
+    if (tmp > INT32_MAX || tmp < INT32_MIN){
+        FATAL("Value of steps is out of range.");
+    }
+
+    int steps = (int)tmp;
 
     INFO("Get all needed arguments.");
 
