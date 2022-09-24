@@ -4,10 +4,31 @@
 
 Cборка:
 
+```
 mkdir build
+```
 
-cmake ..
+```
+cmake -DCMAKE_BUILD_TYPE=Release ..
+```
+или
+
+```
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+```
 
 Исполнение:
 
+```
 ./integrator [config-file]
+```
+
+Пример config-файла:
+
+```
+method = simpson
+low_lim = 0
+high_lim = 1
+steps = 100
+function = sin
+```

@@ -3,7 +3,9 @@ project(integrator C Fortran)
 
 set(CMAKE_C_STANDARD 11)
 
-add_definitions(-DDEBUG_BUILD=1)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-DDEBUG_BUILD=1)
+endif ()
 
 add_executable(integrator
         main.c
