@@ -40,6 +40,16 @@ int main(int argc, char *argv[])
 
     fclose(config_file);
 
+    for (int i = 0; i < parameters_count; ++i)
+    {
+        if (strcmp(parameters_str[i], "") == 0){
+            ERROR("Some of parameters name is empty.");
+        }
+        if (strcmp(parameters_values_str[i], "") == 0){
+            ERROR("Some of parameters values is empty.");
+        }
+    }
+
     INFO("Parsed config file.");
 
     // Find required arguments in configs //
@@ -60,7 +70,7 @@ int main(int argc, char *argv[])
         FATAL("Can't find function name to integrate in config file.");
     }
     int function_s_index = index_in_parameters(parameters_str, function_s);
-    function *func = func_from_string(parameters_values_str[function_s_index]);
+    function *func = function_from_string(parameters_values_str[function_s_index]);
 
     INFO("Get function.");
 
@@ -90,8 +100,6 @@ int main(int argc, char *argv[])
     int steps_s_index = index_in_parameters(parameters_str, steps_s);
     int steps = strtol(parameters_values_str[steps_s_index], NULL, 10);
 
-    //TODO fix steps = 0
-
     INFO("Get all needed arguments.");
 
     // Asemble program and run //
@@ -103,7 +111,9 @@ int main(int argc, char *argv[])
     prog.steps = steps;
     prog.meth = meth;
 
-    double res = run_program(prog);
+    double res = run_program(&prog);
+
+    INFO("Program ended without an error.");
 
     // Output //
 

@@ -5,10 +5,8 @@
 #include "string_utils.h"
 
 // Notice: remove_comments and remove_spaces may be better merge to one function
-void remove_spaces(char *s)
+void remove_spaces(char s[MAX_BUFFER_LENGTH])
 {
-    //TODO error handling
-
     char c = ' ';
     int writer = 0, reader = 0;
 
@@ -26,7 +24,7 @@ void remove_spaces(char *s)
 }
 
 // Effectively hides comments, not removes them
-void remove_comments(char *s)
+void remove_comments(char s[MAX_BUFFER_LENGTH])
 {
     char c = '#';
     int reader = 0;
@@ -43,10 +41,8 @@ void remove_comments(char *s)
     }
 }
 
-void split_parameters(const char *s, char *p, char *v)
+void split_parameters(const char s[MAX_BUFFER_LENGTH], char p[MAX_BUFFER_LENGTH], char v[MAX_BUFFER_LENGTH])
 {
-    //TODO error handling
-
     char c = '=';
     int reader = 0;
 
@@ -57,21 +53,23 @@ void split_parameters(const char *s, char *p, char *v)
         reader++;
     }
 
+    reader++;
+
+    int writer = 0;
     while (s[reader])
     {
-        v[reader] = s[reader];
+        v[writer] = s[reader];
 
+        writer++;
         reader++;
     }
 }
 
 int is_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
 {
-    //TODO error handling
-
     for (int i = 0; i < MAX_BUFFER_LENGTH; ++i)
     {
-        if(strcmp(arr[i], s) == 0){
+        if(strcmp(s, arr[i]) == 0){
             return 1;
         }
     }
@@ -81,8 +79,6 @@ int is_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
 
 int index_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
 {
-    //TODO error handling
-
     int i = 0;
 
     while (strcmp(s, arr[i]) != 0){

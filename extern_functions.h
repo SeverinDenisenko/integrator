@@ -45,14 +45,17 @@ struct program
     int steps;
 };
 
-function functions[3];
-method methods[3];
+#define FUNCTIONS_AMOUNT 3
+#define METHODS_AMOUNT 3
+
+function functions[FUNCTIONS_AMOUNT];
+method methods[METHODS_AMOUNT];
 
 typedef struct program program;
 
-double run_program(program prog);
+double run_program(program *prog);
 
-function *func_from_string(char s[MAX_BUFFER_LENGTH]);
+function *function_from_string(char s[MAX_BUFFER_LENGTH]);
 
 method *method_from_string(char s[MAX_BUFFER_LENGTH]);
 

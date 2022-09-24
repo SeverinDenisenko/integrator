@@ -1,11 +1,19 @@
 ! Created by Severin on 23.09.2022.
 
-function rectangle(function, low_lim, high_lim, steps) result(res)
+function rectangle(f, a, b, n) result(res)
     implicit none
-    real(8) :: function
-    real(8) :: low_lim
-    real(8) :: high_lim
-    real(8) :: res
-    integer(4) :: steps
+    real(8) :: f
+    real(8) :: a
+    real(8) :: b
+    real(8) :: res, s, h
+    integer(4) :: n, i
+
+    s = 0
+
+    h = (b - a) / n;
+    do i = 1, n
+        s = s + f(h * i);
+    enddo
+    res = res * h
 
 end function rectangle
