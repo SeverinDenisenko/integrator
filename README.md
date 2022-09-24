@@ -5,6 +5,7 @@
 Cборка:
 
 mkdir build
+
 cmake ..
 
 Исполнение:
