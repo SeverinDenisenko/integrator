@@ -8,18 +8,6 @@
 #include "string_utils.h"
 #include "logger.h"
 
-extern double cos_f_(double *value);
-
-extern double sin_f_(double *value);
-
-extern double log_f_(double *value);
-
-extern double rectangle_(double (*function)(double *value), double *low_lim, double *high_lim, int *steps);
-
-extern double trapezium_(double (*function)(double *value), double *low_lim, double *high_lim, int *steps);
-
-extern double simpson_(double (*function)(double *value), double *low_lim, double *high_lim, int *steps);
-
 struct function
 {
     double (*pointer)(double *value);
@@ -44,12 +32,6 @@ struct program
     double high_lim;
     int steps;
 };
-
-#define FUNCTIONS_AMOUNT 3
-#define METHODS_AMOUNT 3
-
-function functions[FUNCTIONS_AMOUNT];
-method methods[METHODS_AMOUNT];
 
 typedef struct program program;
 

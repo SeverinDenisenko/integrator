@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdint.h>
 #include "logger.h"
 #include "string_utils.h"
 #include "extern_functions.h"

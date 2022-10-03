@@ -4,11 +4,26 @@
 
 #include "extern_functions.h"
 
-function functions[3] = {{sin_f_, "sin"},
+#define FUNCTIONS_AMOUNT 3
+#define METHODS_AMOUNT 3
+
+extern double cos_f_(double *value);
+
+extern double sin_f_(double *value);
+
+extern double log_f_(double *value);
+
+extern double rectangle_(double (*function)(double *value), double *low_lim, double *high_lim, int *steps);
+
+extern double trapezium_(double (*function)(double *value), double *low_lim, double *high_lim, int *steps);
+
+extern double simpson_(double (*function)(double *value), double *low_lim, double *high_lim, int *steps);
+
+function functions[FUNCTIONS_AMOUNT] = {{sin_f_, "sin"},
                          {cos_f_, "cos"},
                          {log_f_, "log"}};
 
-method methods[3] = {{rectangle_, "rectangle"},
+method methods[METHODS_AMOUNT] = {{rectangle_, "rectangle"},
                      {trapezium_, "trapezium"},
                      {simpson_,   "simpson"}};
 

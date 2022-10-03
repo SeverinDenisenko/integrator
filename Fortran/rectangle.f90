@@ -14,6 +14,6 @@ function rectangle(f, a, b, n) result(res)
     do i = 1, n
         s = s + f(h * i);
     enddo
-    res = res * h
+    res = s * h
 
 end function rectangle
