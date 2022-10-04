@@ -65,7 +65,7 @@ void split_parameters(const char s[MAX_BUFFER_LENGTH], char p[MAX_BUFFER_LENGTH]
     }
 }
 
-int is_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
+int is_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], const char *s)
 {
     for (int i = 0; i < MAX_BUFFER_LENGTH; ++i)
     {
@@ -77,7 +77,7 @@ int is_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
     return 0;
 }
 
-int index_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
+int index_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], const char *s)
 {
     int i = 0;
 
@@ -88,4 +88,3 @@ int index_in_parameters(char arr[MAX_PARAMETERS][MAX_BUFFER_LENGTH], char *s)
 
     return i;
 }
-

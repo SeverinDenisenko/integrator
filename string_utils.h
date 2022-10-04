@@ -17,8 +17,8 @@ void remove_comments(char *s);
 
 void split_parameters(const char *s, char *p, char *v);
 
-int is_in_parameters(char arr[MAX_PARAMETERS][MAX_PARAMETERS], char *s);
+int is_in_parameters(char arr[MAX_PARAMETERS][MAX_PARAMETERS], const char *s);
 
-int index_in_parameters(char arr[MAX_PARAMETERS][MAX_PARAMETERS], char *s);
+int index_in_parameters(char arr[MAX_PARAMETERS][MAX_PARAMETERS], const char *s);
 
 #endif //INTEGRATOR_STRING_UTILS_H

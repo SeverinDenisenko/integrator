@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 project(integrator C Fortran)
 
+set(CMAKE_CXX_COMPILER g++-11)
+add_compile_options(-Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wwrite-strings -Wmissing-declarations -Wlogical-op -Wredundant-decls -Woverloaded-virtual -pedantic)
 set(CMAKE_C_STANDARD 11)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")

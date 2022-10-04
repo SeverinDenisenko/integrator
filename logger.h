@@ -20,7 +20,7 @@ typedef enum LogLevel LogLevel;
 
 void print_manual();
 
-void Log(char *msg, LogLevel level);
+void Log(const char *msg, LogLevel level);
 
 #if DEBUG_BUILD == 1
 #define LOG_LEVEL_WARNING_ENABLED 1

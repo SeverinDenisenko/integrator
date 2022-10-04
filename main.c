@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
     char *endptr;
 
-    char *method_s = "method";
+    const char *method_s = "method";
     if (!is_in_parameters(parameters_str, method_s))
     {
         FATAL("Can't find integration method in config file.");
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
     INFO("Get integration method.");
 
-    char *function_s = "function";
+    const char *function_s = "function";
     if (!is_in_parameters(parameters_str, function_s))
     {
         FATAL("Can't find function name to integrate in config file.");
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 
     INFO("Get function.");
 
-    char *low_lim_s = "low_lim";
+    const char *low_lim_s = "low_lim";
     if (!is_in_parameters(parameters_str, low_lim_s))
     {
         FATAL("Can't find lower integration limit in config file.");
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
         FATAL("Can't convert low integration limit to number.");
     }
 
-    char *high_lim_s = "high_lim";
+    const char *high_lim_s = "high_lim";
     if (!is_in_parameters(parameters_str, high_lim_s))
     {
         FATAL("Can't find high integration limit in config file.");
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
     INFO("Get limits.");
 
-    char *steps_s = "steps";
+    const char *steps_s = "steps";
     if (!is_in_parameters(parameters_str, steps_s))
     {
         FATAL("Can't find number of steps in config file.");

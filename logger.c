@@ -4,9 +4,9 @@
 
 #include "logger.h"
 
-void Log(char *msg, LogLevel level)
+void Log(const char *msg, LogLevel level)
 {
-    char *LogLevelStrings[6] = {"[FATAL]: ", "[ERROR]: ", "[WARN]:  ", "[INFO]:  "};
+    const char *LogLevelStrings[6] = {"[FATAL]: ", "[ERROR]: ", "[WARN]:  ", "[INFO]:  "};
 
     if (level == LOG_LEVEL_FATAL)
     {
